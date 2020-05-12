@@ -21,6 +21,7 @@ function draw()
             }
             context.strokeStyle='grey';
             context.stroke();
+			
     }
 }
 function getMousePosition(canvas, event) { 
@@ -36,20 +37,53 @@ function drawTick(mouseX,mouseY){
 	console.log(xcord);
 	console.log(ycord);
 	//write you logic below, this is just test, you can see running main html
+	let beginX=0;
+	let beginY=0;
+	let endX=0;
+	let endY=0;
 	for (i = 0; i < xcord.length; i++) {
-		if(mouseX<=xcord[i] && mouseY<=ycord[i]){
-			context.moveTo(xcord[i-1],ycord[i-1]);
-            context.lineTo(xcord[i],ycord[i]);
-			context.strokeStyle='red';
-            context.stroke();
+		if(mouseX<=xcord[i]){
+			beginX=xcord[i-1];
+			endX=xcord[i];
+			break;
 		}
 		else{
 			logInfo('something wrong')
 			logInfo("Coordinate x: " + mouseX+ " Coordinate y: " + mouseY); 
 		}
+			
+			//context.fill();
 		
 		//text += cars[i] + "<br>";
 	}
+	for (i = 0; i < ycord.length; i++) {
+		if(mouseY<=ycord[i]){
+			beginY=ycord[i-1];
+			endY=ycord[i]
+			break;
+		}
+		else{
+			logInfo('something wrong')
+			logInfo("Coordinate x: " + mouseX+ " Coordinate y: " + mouseY); 
+		}
+			
+			//context.fill();
+		
+		//text += cars[i] + "<br>";
+	}
+	context.beginPath();
+			//context.fillStyle = "#FF0000";
+			context.strokeStyle='red';
+            
+			context.moveTo(beginX,beginY);//0.0
+            context.lineTo(endX,beginY);//0.50
+			
+			//context.strokeStyle='red';
+            context.stroke();
+	//context.fillStyle = "#000000";
+    //context.beginPath();
+    //context.arc(mouseX, mouseY, 50, 0, 2*Math.PI);
+    //context.fill();
 }
 
 function logInfo(msg){
